@@ -46,7 +46,7 @@ const handleTap = (event) =>{
 const generateMoneyEffect= (x,y) =>{
     let money = document.createElement("img");
     money.classList.add("cost");
-    money.src = "../img/coinx23.png";
+    money.src = "./img/coinx23.png";
     money.style.top = `${y}px`;
     money.style.left = `${x}px`;
     tap.append(money);
