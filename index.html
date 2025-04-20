@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>Hamster Combat</title>
     <link rel="stylesheet" href="./style/style.css">
     <script src="./src/index.js" defer></script>
@@ -37,7 +37,7 @@
                 <div class="game-body-lvl">
                     <div class="lvl-head">
                         <div class="lvl-mode">Beginner</div>
-                        <div id="lvl-counter">0 / 10</div>
+                        <div id="lvl-counter">Level: 0 / 10</div>
                     </div>
                     
                     <lvl class="lvl-bar">
@@ -46,12 +46,12 @@
                     
                 </div>
 
-                <div class="tap">
-                    <img id="hamster-skin" src="./img/hamster-skin-lvl-1.png" alt="">
+                <div class="tap" draggable="false">
+                    <img id="hamster-skin" src="./img/hamster-skin-lvl-1.png" alt="" draggable="false">
                 </div>
 
                 <div class="game-body-energy">
-                    <div><img src="./img/energy.png" alt=""><span>1000</span>/1000</div>
+                    <div><img src="./img/energy.png" alt=""><span id="energy">1000</span>/1000</div>
                     <div>Boost</div>
                 </div>
 
