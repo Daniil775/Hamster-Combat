@@ -238,3 +238,10 @@ body{
         opacity: 0;
     }
 }
+
+@media screen and (max-width:430px){
+    .game{
+        width: 100vw;
+        min-height: 100vh;
+    }
+}
