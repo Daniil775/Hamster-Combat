@@ -4,6 +4,11 @@ const lvl = document.querySelector('.lvl-fill')
 const hamster = document.querySelector("#hamster-skin")
 const levelCounter = document.querySelector("#lvl-counter")
 const energy = document.querySelector("#energy")
+const exchangeNav = document.querySelector("#footer-exchange")
+const mineNav = document.querySelector("#footer-mine")
+const marcketbtn_list = document.querySelectorAll(".marked-card-btn")
+const pricecard_list = document.querySelectorAll(".marked-card-price")
+
 
 let account = {
     name:"Hamster",
@@ -16,6 +21,40 @@ let account = {
         upgrade_price:100
     },
     energy:1000
+}
+let market = {
+    price_for_card:100,
+    profit:1
+
+}
+
+marcketbtn_list.forEach((value) => {
+    value.addEventListener("click",(event)=>{
+        if(account.balance >= market.price_for_card){
+            account.balance -= market.price_for_card;
+            account.money_per_hour += market.profit;
+            market.price_for_card += 10;
+            market.profit *= 2;
+            pricecard_list.forEach((value) => {
+                value.innerText = `${market.price_for_card}`
+            })
+            alert("Карточка успешно куплена!")
+        }else{
+            alert("Недостаточно средств!")
+        }
+    })
+})
+
+function switchPage(page){
+    if(page == 'mine'){
+        document.querySelector('.game-body-market').classList.remove('hidden'); //удаляем класс hidden то есть сделать его видимым
+        document.querySelector('.game-body-energy').classList.add('hidden'); //добавляем класс hidden то есть сделать его невидимым
+        tap.classList.add('hidden') // добавляем класс hidden то есть сделать невидимым
+    }else if( page == 'market'){
+        document.querySelector('.game-body-market').classList.add('hidden'); //добавляем класс hidden то есть сделать его невидимым
+        tap.classList.remove('hidden') //удаляем класс hidden то есть сделать его видимым
+        document.querySelector('.game-body-energy').classList.remove('hidden'); //удаляем класс hidden то есть сделать его видимым
+    }
 }
 
 const handleTap = (event) =>{
@@ -62,6 +101,7 @@ const ubdateLevelPoints = () => {
         account.level.value +=1;
         account.level.point = 0;
         account.level.upgrade_price += 100;
+        hamster.src = `./img/hamster-skin-lvl-${account.level.value}.png`
         levelCounter.innerText = `Level: ${account.level.value} / 10`
         return;
     }
@@ -71,8 +111,11 @@ const ubdateLevelPoints = () => {
 
 function gameLoop(){
     let interval = setInterval(()=>{
+        account.balance += account.money_per_hour;
+        wallet.innerText= account.balance.toFixed(0);
         if(account.energy<1000){
             account.energy +=1;
+            
         }else{
             return;
         }
@@ -83,3 +126,6 @@ function gameLoop(){
 gameLoop()//zapusk igrovogo cikla
 
 tap.addEventListener("click", handleTap);
+
+mineNav.addEventListener('click',()=>{switchPage('mine')});
+exchangeNav.addEventListener('click',()=>{switchPage('market')});
