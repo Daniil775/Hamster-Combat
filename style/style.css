@@ -17,11 +17,12 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
- 
+    min-height: 100vh;
+   
 }
 
 .game{
-    min-height: 100vh;
+    height: 926px;
     width: 428px;
     border-radius: 50px;
     background: #2C2F35;
